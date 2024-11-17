@@ -10,7 +10,7 @@ The script simulates the mining of blocks in a blockchain by finding a "nonce" v
 
 - **Blockchain Mining**: The mining process involves adjusting the difficulty level (number of leading zeros in the hash) and tracking the time it takes to mine a block.
 - **Persistence**: The mining process is stored in a CSV file (`mining_results.csv`) for easy analysis. Additionally, a JSON file (`mining_state.json`) stores the state of the process, allowing you to resume from where you left off in case of interruptions.
-- **Statistical Analysis**: The `mean.py` script reads the mining results from the CSV, calculates the mean and standard deviation of the mining times at each difficulty level, and visualizes the performance.
+- **Statistical Analysis**: The `plot.py` script reads the mining results from the CSV, calculates the mean and standard deviation of the mining times at each difficulty level, and visualizes the performance.
 - **Data Visualization**: The statistics (mean and standard deviation) are displayed in a graph to help understand how mining performance scales with the difficulty.
 
 ## Features
@@ -50,8 +50,22 @@ This will start the mining process and save the results in `mining_results.csv`.
 
 Once the mining process is complete, you can analyze the results by generating statistics. To calculate and visualize the mining performance across different difficulty levels, run the following script:
 ```bash
-python3 mean.py
+python3 plot.py
 ```
+
+## Parameters
+
+This project allows users to configure key parameters to customize the mining simulation:
+
+- **`difficulty_max`**: Defines the maximum number of leading zeros required in the hash for a block to be considered mined. By default, it is set to `10`.  
+- **`difficulty_levels`**: A list of difficulty levels generated based on `difficulty_max`. Each level corresponds to a string of zeros, starting from "0" (1 zero) up to "0000000000" (10 zeros).  
+- **`trials`**: Specifies the number of mining attempts to perform for each difficulty level. The default value is `1`, but it can be increased for statistical analyses.  
+
+- **`output_file`**: The name of the CSV file where mining results (time and difficulty) are saved. By default, the output is stored in `"mining_results.csv"`.  
+- **`state_file`**: The JSON file used to save and restore the mining simulation state. This file (`"mining_state.json"`) ensures progress can be resumed if the simulation is interrupted.  
+
+These parameters make the simulation flexible and enable users to adapt it for a wide range of experiments and data analysis tasks.
+
 
 ## Output
 
